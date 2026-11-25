@@ -94,3 +94,21 @@ except "car" 1 hit = Dad car-trouble draft, different mechanism):
 - This section is the revision itself: trial-log.md now takes its final content
   from 2 messages (v1 write + this v2 edit). Re-commit + push + bundle v2 +
   re-check follow; results recorded below.
+
+## v2 results (real, 25 Nov 2026 ~09:59 WITA)
+
+- Bundle v2: `tmp-unsent/unsent-bundle-v2.tar.gz`, 173,668 B, sha256
+  `c6f0e8c5bc91e5c7fe673ab376a449b1f4d4a0a5fe6a8cd39face2154a8c6a6e`.
+  Still 0 usage rows attached (subagent session; coordinator re-bundle needed).
+- Check v2 (from inside the repo): **13 passed, 1 failed, 5 skipped** —
+  the builder target. `thinking_revised` now PASSES (trial-log.md from 2
+  messages). Only failure left: `thinking_priced` (0 usage rows), which only
+  the coordinator can fix by re-bundling with usage rows after this run ends.
+  Reproduces 96.9% (95/98 lines), 18 turns.
+- HEAD for v2: `48dbf6c3ad8230d2b6a612ceb56c5523e504d725` = ls-remote, main,
+  tree clean. Re-verified `/output/entry.txt` immediately after my own
+  `node main.ts` re-run: 97 chars of text, 98 bytes in file.
+- NOT SUBMITTED by this builder (per task). Next step for coordinator:
+  re-bundle from the original session file with usage rows (SELECT over
+  agent_id `0bd41d52-51c7-4337-b488-99968af069cf` + coordinator's own),
+  re-check to 14/0, then submit before R1 cutoff 25 Nov 17:30 WITA.
